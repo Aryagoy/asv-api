@@ -29,8 +29,19 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+EXPIRABLES = [
+        {
+            'model': 'asv.api.models.Model',
+            'date_field': 'created',
+            'expires_after': schedule(seconds=2),
+        }
+    ]
+
+
 
 INSTALLED_APPS = [
+    'expirables',
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +86,12 @@ WSGI_APPLICATION = 'asv.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'graphs',
+        'USER' : 'postgres',
+        'PASSWORD': 'arya@123',
+        'HOST': 'localhost',
+        'PORT' : '5432',
     }
 }
 
