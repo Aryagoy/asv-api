@@ -15,12 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import api.views
+from .import views
 from django.conf.urls import url, include
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/',include('api.urls')),
-
+    path('graph/',views.get_mq),
 ]

@@ -25,22 +25,22 @@ SECRET_KEY = 'r3sa-z2i-p!ha8vrev0u@q&j$5h6+8fln&kc*@rqk!8(wm@1te'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-EXPIRABLES = [
+'''EXPIRABLES = [
         {
             'model': 'asv.api.models.Model',
             'date_field': 'created',
             'expires_after': schedule(seconds=2),
         }
     ]
-
+'''
 
 
 INSTALLED_APPS = [
-    'expirables',
+    #'rest_framework'
     'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,13 +51,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'asv.urls'
