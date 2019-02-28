@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/flightindicators.css' %}" />
+</head>
+<body>
+    <span id="attitude"></span>
+    <span id="speed"></span>
+
+<div style="max-width:100%;list-style:none; transition: none;overflow:hidden;width:500px;height:500px;"><div id="gmapcanvas" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=12.8307157,80.0492629&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="embedmap-code" rel="nofollow" href="https://www.embed-map.com" id="make-mapdata">https://www.embed-map.com</a><style>#gmapcanvas img.text-marker{max-width:none!important;background:none!important;}img{max-width:none}</style></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.flightindicators.min.js' %}"></script>
+    <script>
+    var attitude = $.flightIndicator('#attitude', 'attitude', {size:300, roll:0, pitch:0, showBox : true});
+    var airspeed = $.flightIndicator('#speed', 'airspeed', {size: 300, showBox: false});
+    setInterval(function() {
+        // Attitude update
+        $.ajax({
+            type: "POST",
+            dataType: "application/json",
+            url: "/api/horizon/",
+            complete: function(data) {
+                var data = JSON.parse(data.responseText);
+                attitude.setRoll(data.roll);
+                attitude.setPitch(data.pitch);
+                console.log(data.accel);
+                airspeed.setAirSpeed(data.accel*4);
+            }
+        });
+    }, 50);
+    </script>
+</body>
+</html>

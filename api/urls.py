@@ -20,6 +20,8 @@ from django.conf.urls import url, include
 
 
 urlpatterns = [
-    path('graph/',views.get_mq),
-    path('logs/', views.get_logs),
+    path('graph/set',views.set_mq),
+    path('logs/set', views.set_logs),
+    path('horizon/', views.get_horizon),
+    path('horizon/set/', views.set_horizon),
 ]
