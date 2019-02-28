@@ -75,12 +75,8 @@ WSGI_APPLICATION = 'asv.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'asv_db',
-        'USER' : 'asv_db_user',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT' : '5432',
     }
 }
 
