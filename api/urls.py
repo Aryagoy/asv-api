@@ -24,4 +24,6 @@ urlpatterns = [
     path('logs/set', views.set_logs),
     path('horizon/', views.get_horizon),
     path('horizon/set/', views.set_horizon),
+    path('scan/set/', views.set_scan),
+    path('scan/', views.get_scan),
 ]

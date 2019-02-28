@@ -8,3 +8,12 @@ class Horizon(models.Model):
     roll = models.FloatField()
     pitch = models.FloatField()
     accel = models.FloatField()
+
+class Scan(models.Model):
+    start_angle = models.FloatField()
+    stop_angle = models.FloatField()
+    angle_increment = models.FloatField()
+    range_min = models.FloatField()
+    range_max = models.FloatField()
+    ranges = models.TextField()
+    intensities = models.TextField()
